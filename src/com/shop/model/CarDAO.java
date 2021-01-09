@@ -266,6 +266,7 @@ public class CarDAO {
             e1.printStackTrace();
         } finally {
             try {
+                if (res != null) res.close();
                 if (pst != null) pst.close();
                 if (con != null) con.close();
             } catch (Exception e2) {
@@ -273,5 +274,24 @@ public class CarDAO {
             }
         }
         return lookupDTOS;
+    }
+
+    public void delBook(int rno) {
+        getCon();
+        try{
+            String sql = "DELETE FROM car_reservation WHERE rno=?";
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, rno);
+            pst.executeUpdate();
+        }catch (Exception e1) {
+            e1.printStackTrace();
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
     }
 }
