@@ -15,7 +15,7 @@
     </style>
 </head>
 <body>
-<h3>■ 옵션 선택</h3>
+<h3>■ 예약 상세</h3>
 <table width="1000">
     <tr>
         <td align="center" colspan="2">
@@ -33,7 +33,7 @@
     </tr>
     <tr align="center">
         <td colspan="2">
-            <input type="button" onclick="location.href='#'" value="예약 확인하기">
+            <input type="button" onclick="location.href='BookLookupCon'" value="예약 확인하기">
         </td>
     </tr>
 </table>

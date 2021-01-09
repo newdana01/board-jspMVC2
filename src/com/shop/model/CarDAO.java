@@ -208,7 +208,7 @@ public class CarDAO {
         return  carDTO;
         }
 
-    public void insertBooking(BookDTO bookDTO) {
+    public void insertBooking(BookDTO bookDTO) { //예약 정보를 저장
         getCon();
 
         try{
@@ -234,5 +234,44 @@ public class CarDAO {
                 e2.printStackTrace();
             }
         }
+    }
+
+    public ArrayList<LookupDTO> getBook(String id) { //현재 날짜 이후의 해당 회원의 예약 정보를 가져옴
+        getCon();
+        ArrayList<LookupDTO> lookupDTOS = new ArrayList<>();
+
+        try{
+            String sql = "SELECT rno, cname, img, total_cost, rent_date, return_date, ins, wifi, nav, seat" +
+                    " FROM rentcar a JOIN car_reservation b ON a.cno = b.cno WHERE id=? AND rent_date >= DATE(NOW())";
+            pst = con.prepareStatement(sql);
+            pst.setString(1, id);
+            res = pst.executeQuery();
+
+            while(res.next()){
+                LookupDTO lookupDTO = new LookupDTO();
+                lookupDTO.setRno(res.getInt(1));
+                lookupDTO.setCname(res.getString(2));
+                lookupDTO.setImg(res.getString(3));
+                lookupDTO.setTotal_cost(res.getInt(4));
+                lookupDTO.setRent_date(res.getString(5));
+                lookupDTO.setReturn_date(res.getString(6));
+                lookupDTO.setIns(res.getInt(7));
+                lookupDTO.setWifi(res.getInt(8));
+                lookupDTO.setNav(res.getInt(9));
+                lookupDTO.setSeat(res.getInt(10));
+
+                lookupDTOS.add(lookupDTO);
+            }
+        }catch (Exception e1) {
+            e1.printStackTrace();
+        } finally {
+            try {
+                if (pst != null) pst.close();
+                if (con != null) con.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return lookupDTOS;
     }
 }

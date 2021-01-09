@@ -45,7 +45,7 @@
       <a href="BookMainCon">예 약 하 기</a>
     </td>
     <td>
-      <a href="#">예 약 확 인</a>
+      <a href="BookLookupCon">예 약 확 인</a>
     </td>
     <td>
       <a href="#">자유게시판</a>
