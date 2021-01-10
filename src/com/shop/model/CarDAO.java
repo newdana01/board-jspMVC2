@@ -242,7 +242,8 @@ public class CarDAO {
 
         try{
             String sql = "SELECT rno, cname, img, total_cost, rent_date, return_date, ins, wifi, nav, seat" +
-                    " FROM rentcar a JOIN car_reservation b ON a.cno = b.cno WHERE id=? AND rent_date >= DATE(NOW())";
+                    " FROM rentcar a JOIN car_reservation b ON a.cno = b.cno " +
+                    "WHERE id=? AND rent_date >= DATE(NOW()) ORDER BY rent_date";
             pst = con.prepareStatement(sql);
             pst.setString(1, id);
             res = pst.executeQuery();

@@ -27,7 +27,7 @@
     <table width="1000">
         <tr height="60" align="center">
             <td width="500" rowspan="6 ">
-                <img src="img/${img}" alt="차이미지" width="450">
+                <img src="img/${img}" alt="차이미지" width="450" height="300">
             </td>
             <td width="250">대여 날짜</td>
             <td width="250">
